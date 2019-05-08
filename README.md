@@ -1,4 +1,4 @@
-# MERN Auth Boilerplate
+# MERN Productivity Tracker
 
 React frontend and Express backend
 

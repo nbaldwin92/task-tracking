@@ -9,6 +9,7 @@ import {
   setCreateNewTask,
   showTaskHome,
   showTaskList,
+  showTimesheet,
 } from '../../actions/taskActions';
 
 const MenuBar = () => {
@@ -23,6 +24,10 @@ const MenuBar = () => {
 
   const onShowTaskHome = () => {
     store.dispatch(showTaskHome());
+  };
+
+  const onShowTimesheet = () => {
+    store.dispatch(showTimesheet());
   };
 
   const Wrapper = styled.div`
@@ -70,6 +75,9 @@ const MenuBar = () => {
           </IconButton>
           <IconButton type="submit" onClick={onAddNewTask}>
             <i className="fas fa-plus-circle fa-2x" />
+          </IconButton>
+          <IconButton type="submit" onClick={onShowTimesheet}>
+            <i className="fas fa-clock fa-2x" />
           </IconButton>
         </SidebarWrapper>
       </nav>

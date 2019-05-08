@@ -2,6 +2,7 @@ import {
   CREATE_NEW_TASK,
   SHOW_TASK_LIST,
   SHOW_TASK_HOME,
+  SHOW_TIMESHEET,
 } from '../actions/types';
 
 const isEmpty = require('is-empty');
@@ -21,6 +22,10 @@ export default function(state = initialState, action) {
     case CREATE_NEW_TASK:
       return {
         new: true,
+      };
+    case SHOW_TIMESHEET:
+      return {
+        timesheet: true,
       };
 
     default:

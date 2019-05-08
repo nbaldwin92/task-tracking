@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import styled from 'styled-components';
 
+import NewTask from '../assets/NewTask';
+
 const TaskList = props => {
   const { tasks } = props;
 
@@ -40,9 +42,17 @@ const TaskList = props => {
   if (tasks.new) {
     return (
       <div>
+        <NewTask />
+      </div>
+    );
+  }
+
+  if (tasks.timesheet) {
+    return (
+      <div>
         <Wrapper>
           <TaskTrackingPanel>
-            <div>Enter New Task</div>
+            <div>Timesheet</div>
           </TaskTrackingPanel>
         </Wrapper>
       </div>

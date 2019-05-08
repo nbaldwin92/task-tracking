@@ -1,4 +1,9 @@
-import { CREATE_NEW_TASK, SHOW_TASK_LIST, SHOW_TASK_HOME } from './types';
+import {
+  CREATE_NEW_TASK,
+  SHOW_TASK_LIST,
+  SHOW_TASK_HOME,
+  SHOW_TIMESHEET,
+} from './types';
 
 export const showTaskHome = () => ({
   type: SHOW_TASK_HOME,
@@ -10,4 +15,8 @@ export const setCreateNewTask = () => ({
 
 export const showTaskList = () => ({
   type: SHOW_TASK_LIST,
+});
+
+export const showTimesheet = () => ({
+  type: SHOW_TIMESHEET,
 });
