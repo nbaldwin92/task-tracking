@@ -2,20 +2,29 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import store from '../../store';
 
 import useForm from '../utils/useForm';
 
+import { showTaskList } from '../../actions/taskActions';
+
 const NewTask = props => {
   const { auth } = props;
+
+  const onShowTaskList = () => {
+    store.dispatch(showTaskList());
+  };
 
   const { values, onChangeHandler, lastUpdated } = useForm(
     'taskName',
     'taskDescription'
   );
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
+
     axios
       .post('/api/tasks/newTask', {
         // TODO Map this to redux store and get specific user id
@@ -29,6 +38,9 @@ const NewTask = props => {
       .catch(function(error) {
         console.log(error);
       });
+    onShowTaskList();
+    const { history } = props;
+    history.push('/dashboard');
   };
 
   const mounted = useRef();
@@ -64,7 +76,7 @@ const NewTask = props => {
     <div>
       <Wrapper>
         <TaskTrackingPanel>
-          <form onSubmit={handleSubmit}>
+          <form method="post" onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Task Name</label>
               <input
@@ -103,10 +115,11 @@ const NewTask = props => {
 
 NewTask.propTypes = {
   auth: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps)(NewTask);
+export default withRouter(connect(mapStateToProps)(NewTask));

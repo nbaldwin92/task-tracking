@@ -25,6 +25,16 @@ router.post('/newTask', (req, res) => {
 router.get('/myTasks', (req, res) => {
   // Form validation
   // Find tasks by specific user
+
+  Task.find({ userID: req.query.userID })
+    .then(tasks => res.json(tasks))
+    .catch(err => console.log(err));
+});
+
+router.get('/removeTask', (req, res) => {
+  Task.deleteOne({ _id: req.query.id })
+    .then(tasks => res.json(tasks))
+    .catch(err => console.log(err));
 });
 
 module.exports = router;

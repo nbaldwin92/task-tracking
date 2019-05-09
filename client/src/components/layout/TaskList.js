@@ -4,19 +4,38 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 import NewTask from '../assets/NewTask';
 
 const TaskList = props => {
-  const { tasks } = props;
+  const { auth, tasks } = props;
 
   const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get('/api/tasks/myTasks').then(result => setData(result.data));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get('/api/tasks/myTasks', {
+        params: {
+          userID: auth.user.id,
+        },
+      })
+      .then(result => setData(result.data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const deleteTask = id => {
+    console.log(`delete${id}`);
+    axios.get('/api/tasks/removeTask', {
+      params: {
+        id,
+      },
+    });
+    const { history } = props;
+    history.push('/dashboard');
+  };
 
   const Wrapper = styled.div`
     display: flex;
@@ -40,7 +59,24 @@ const TaskList = props => {
       <div>
         <Wrapper>
           <TaskTrackingPanel>
-            <div>Task List</div>
+            <div>
+              Task List
+              <div>
+                {data.map(task => (
+                  <div key={task._id}>
+                    <li>{task.name}</li>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        deleteTask(task._id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
           </TaskTrackingPanel>
         </Wrapper>
       </div>
@@ -77,11 +113,13 @@ const TaskList = props => {
 };
 
 TaskList.propTypes = {
+  auth: PropTypes.object.isRequired,
   tasks: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   tasks: state.tasks,
 });
 
-export default connect(mapStateToProps)(TaskList);
+export default withRouter(connect(mapStateToProps)(TaskList));
