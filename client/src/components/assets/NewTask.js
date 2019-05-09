@@ -1,13 +1,35 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import axios from 'axios';
 
 import useForm from '../utils/useForm';
 
-const NewTask = () => {
-  const { values, onChangeHandler, handleSubmit, lastUpdated } = useForm(
+const NewTask = props => {
+  const { auth } = props;
+
+  const { values, onChangeHandler, lastUpdated } = useForm(
     'taskName',
     'taskDescription'
   );
+
+  const handleSubmit = () => {
+    axios
+      .post('/api/tasks/newTask', {
+        // TODO Map this to redux store and get specific user id
+        userID: auth.user.id,
+        name: values.taskName,
+        description: values.taskDescription,
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
 
   const mounted = useRef();
   useEffect(() => {
@@ -15,7 +37,10 @@ const NewTask = () => {
       mounted.current = true;
     } else {
       // componentDidUpate logic
-      document.getElementById(lastUpdated).focus();
+      // eslint-disable-next-line no-lonely-if
+      if (lastUpdated) {
+        document.getElementById(lastUpdated).focus();
+      }
     }
   });
 
@@ -62,7 +87,11 @@ const NewTask = () => {
                 value={values.taskDescription}
               />
             </div>
-            <button type="button" className="btn btn-primary">
+            <button
+              type="button"
+              onClick={handleSubmit}
+              className="btn btn-primary"
+            >
               Submit
             </button>
           </form>
@@ -72,4 +101,12 @@ const NewTask = () => {
   );
 };
 
-export default NewTask;
+NewTask.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(NewTask);

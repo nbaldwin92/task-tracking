@@ -13,13 +13,18 @@ router.post('/newTask', (req, res) => {
 
   const newTask = new Task({
     userID: req.body.userID,
-    name: req.body.taskName,
-    description: req.body.taskDescription,
+    name: req.body.name,
+    description: req.body.name,
   });
   newTask
     .save()
     .then(task => res.json(task))
     .catch(err => console.log(err));
+});
+
+router.get('/myTasks', (req, res) => {
+  // Form validation
+  // Find tasks by specific user
 });
 
 module.exports = router;

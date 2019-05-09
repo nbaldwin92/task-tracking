@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
+
+import axios from 'axios';
 
 import styled from 'styled-components';
 
@@ -9,6 +11,12 @@ import NewTask from '../assets/NewTask';
 
 const TaskList = props => {
   const { tasks } = props;
+
+  const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   axios.get('/api/tasks/myTasks').then(result => setData(result.data));
+  // }, []);
 
   const Wrapper = styled.div`
     display: flex;
