@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import TaskList from '../layout/TaskList';
-import TaskInfo from '../layout/TaskInfo';
+import TimerSidebar from '../layout/TimerSidebar';
 import MenuBar from '../layout/MenuBar';
 
 const Dashboard = () => {
@@ -16,7 +16,7 @@ const Dashboard = () => {
       <Wrapper>
         <MenuBar />
         <TaskList />
-        <TaskInfo />
+        <TimerSidebar />
       </Wrapper>
     </div>
   );

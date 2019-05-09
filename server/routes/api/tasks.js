@@ -31,6 +31,12 @@ router.get('/myTasks', (req, res) => {
     .catch(err => console.log(err));
 });
 
+router.get('/findTask', (req, res) => {
+  Task.findOne({ _id: req.query.id })
+    .then(task => res.json(task))
+    .catch(err => console.log(err));
+});
+
 router.get('/removeTask', (req, res) => {
   Task.deleteOne({ _id: req.query.id })
     .then(tasks => res.json(tasks))

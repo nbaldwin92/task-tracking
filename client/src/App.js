@@ -12,6 +12,8 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/private-route/PrivateRoute';
 import Dashboard from './components/dashboard/Dashboard';
+import TaskInfo from './components/assets/TaskInfo';
+
 import NoPage from './components/NoPage';
 
 import Test from './components/Test';
@@ -48,6 +50,8 @@ const App = () => (
           <Route exact path="/login" component={Login} />
           <PrivateRoute exact path="/test" component={Test} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/taskinfo/:id" component={TaskInfo} />
+
           <Route component={NoPage} />
         </Switch>
       </div>

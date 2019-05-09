@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 
 const useForm = inputNames => {
   const [values, setValues] = useState(inputNames);

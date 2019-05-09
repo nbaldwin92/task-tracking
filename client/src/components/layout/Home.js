@@ -54,13 +54,10 @@ const Home = props => {
 
 Home.propTypes = {
   auth: PropTypes.object.isRequired,
-  // eslint-disable-next-line react/no-unused-prop-types
-  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors,
 });
 
 export default connect(

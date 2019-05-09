@@ -5,8 +5,6 @@ import {
   SHOW_TIMESHEET,
 } from '../actions/types';
 
-const isEmpty = require('is-empty');
-
 const initialState = {};
 
 export default function(state = initialState, action) {

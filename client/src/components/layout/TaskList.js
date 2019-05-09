@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -27,7 +27,6 @@ const TaskList = props => {
   }, []);
 
   const deleteTask = id => {
-    console.log(`delete${id}`);
     axios.get('/api/tasks/removeTask', {
       params: {
         id,
@@ -64,7 +63,7 @@ const TaskList = props => {
               <div>
                 {data.map(task => (
                   <div key={task._id}>
-                    <li>{task.name}</li>
+                    <Link to={`/taskinfo/${task._id}`}> {task.name}</Link>
                     <button
                       type="button"
                       onClick={() => {
@@ -115,6 +114,7 @@ const TaskList = props => {
 TaskList.propTypes = {
   auth: PropTypes.object.isRequired,
   tasks: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

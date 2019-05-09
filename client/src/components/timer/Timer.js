@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Timer = () => {
-  const [currentCount, setCount] = useState(10);
+  const [currentCount] = useState(10);
 
   return (
     <div>

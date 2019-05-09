@@ -32,9 +32,7 @@ const NewTask = props => {
         name: values.taskName,
         description: values.taskDescription,
       })
-      .then(function(response) {
-        console.log(response);
-      })
+      .then(function(response) {})
       .catch(function(error) {
         console.log(error);
       });
