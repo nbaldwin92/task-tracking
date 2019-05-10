@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import axios from 'axios';
 
+import { FullWrapper } from './styles/Styles';
+
 const TaskInfo = props => {
   const { match } = props;
   const { id } = match.params;
@@ -30,13 +32,14 @@ const TaskInfo = props => {
   }, [id]);
 
   if (!taskInfo) {
-    return <div>nothing</div>;
+    return <FullWrapper />;
   }
   return (
     <div>
-      <div key={taskInfo._id}>
-        <li> {taskInfo.description}</li>
-      </div>
+      <FullWrapper>
+        <p>Task Name: {taskInfo.name}</p>
+        <p>Task Description: {taskInfo.description}</p>
+      </FullWrapper>
     </div>
   );
 };

@@ -14,7 +14,7 @@ router.post('/newTask', (req, res) => {
   const newTask = new Task({
     userID: req.body.userID,
     name: req.body.name,
-    description: req.body.name,
+    description: req.body.description,
   });
   newTask
     .save()

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { withRouter, Link } from 'react-router-dom';
 
-import styled from 'styled-components';
+import { TaskTrackingPanel, FlexWrapper } from '../assets/styles/Styles';
 
 import NewTask from '../assets/NewTask';
 
@@ -36,27 +36,10 @@ const TaskList = props => {
     history.push('/dashboard');
   };
 
-  const Wrapper = styled.div`
-    display: flex;
-  `;
-
-  const TaskTrackingPanel = styled.section`
-    padding: 0px;
-    margin: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 65vw;
-    text-align: center;
-    background-color: rgb(43, 46, 66);
-    color: white;
-  `;
-
   if (tasks.list) {
     return (
       <div>
-        <Wrapper>
+        <FlexWrapper>
           <TaskTrackingPanel>
             <div>
               Task List
@@ -77,7 +60,7 @@ const TaskList = props => {
               </div>
             </div>
           </TaskTrackingPanel>
-        </Wrapper>
+        </FlexWrapper>
       </div>
     );
   }
@@ -93,11 +76,11 @@ const TaskList = props => {
   if (tasks.timesheet) {
     return (
       <div>
-        <Wrapper>
+        <FlexWrapper>
           <TaskTrackingPanel>
             <div>Timesheet</div>
           </TaskTrackingPanel>
-        </Wrapper>
+        </FlexWrapper>
       </div>
     );
   }

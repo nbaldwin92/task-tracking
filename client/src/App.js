@@ -40,6 +40,7 @@ if (localStorage.jwtToken) {
     store.dispatch(isAuth);
   }
 }
+
 const App = () => (
   <Provider store={store}>
     <Router>
