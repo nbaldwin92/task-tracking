@@ -9,6 +9,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { TaskTrackingPanel, FlexWrapper } from '../assets/styles/Styles';
 
 import NewTask from '../assets/NewTask';
+import Timesheet from '../assets/Timesheet';
 
 const TaskList = props => {
   const { auth, tasks } = props;
@@ -78,7 +79,7 @@ const TaskList = props => {
       <div>
         <FlexWrapper>
           <TaskTrackingPanel>
-            <div>Timesheet</div>
+            <Timesheet />
           </TaskTrackingPanel>
         </FlexWrapper>
       </div>
